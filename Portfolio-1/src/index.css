@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gloock&family=Inter:wght@100..900&display=swap");
+
+/* hiding scrollbar */
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@layer components {
+  .contact-info {
+    @apply bg-transparent p-2 text-xs border-black border-b-[1.5px] outline-none;
+  }
+}
+
+/* navlink animation */
+.nav-link:before {
+  content: "";
+  position: absolute;
+  height: 1px;
+  width: 0;
+  transform-origin: left;
+  background-color: rgb(63, 63, 70, 1);
+  transition: 0.2s;
+  bottom: 0;
+}
+.nav-link:hover:before {
+  width: 100%;
+}
+
+/* buttons animation */
+.button {
+  position: relative;
+  z-index: 1;
+  background-color: black;
+  border: solid 1px black;
+}
+
+.button:hover {
+  color: white;
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #e7e1d4;
+  z-index: -1;
+  transform-origin: left;
+  transition: transform 0.5s ease;
+  transform: scaleX(1);
+}
+.button:hover::before {
+  transform-origin: right;
+  transition: transform 0.5s ease;
+  transform: scaleX(0);
+}
