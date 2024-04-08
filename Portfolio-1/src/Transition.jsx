@@ -1,7 +1,7 @@
 import {motion as m} from 'framer-motion';
 
 const Transition = (OgComponent)=> {
-  return () => (
+  return ()=> (
     <>
       <OgComponent />
       <m.div
