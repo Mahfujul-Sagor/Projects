@@ -40,6 +40,7 @@ router.get('/logout', function(req, res, next){
 });
 
 
+// safeguard function to prevent link edits
 function isLoggedIn(req, res, next){
   if(req.isAuthenticated()) {
     return next();
