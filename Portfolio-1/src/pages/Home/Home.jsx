@@ -71,7 +71,6 @@ function Home() {
           className="z-10 flex flex-col justify-center items-start gap-4"
           variants={professionVariant}
         >
-          {/* <h1 className="text-6xl font-[Inter]">Web Developer</h1> */}
           <div>
             {sentence.map((letter, index) => {
               return <TextSpan key={index}>{letter === ' ' ? '\u00A0' : letter}</TextSpan>;
