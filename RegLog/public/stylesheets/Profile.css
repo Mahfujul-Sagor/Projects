@@ -1,0 +1,19 @@
+body {
+  background-color: lightgray;
+}
+
+.heading {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.logout_btn {
+  text-decoration: none;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  color: whitesmoke;
+  background-color: lightcoral;
+  cursor: pointer;
+}

@@ -1,11 +1,46 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" href="/stylesheets/Home.css">
+</head>
+<body>
+  <div class="container">
+    <h2 class="heading">Register</h2>
+    <form action="/register" method="post">
+      <div>
+        <label for="usernamereg">Username:</label>
+        <input name="username" type="text" id="usernamereg" placeholder="Username">
+      </div>
+      <div>
+        <label for="passwordreg">Password:</label>
+        <input name="password" type="password" id="passwordreg" placeholder="Password">
+      </div>
+      <div>
+        <label for="secretreg">Secret:</label>
+        <input name="secret" type="text" id="secretreg" placeholder="Enter a secret text">
+      </div>
+      <button type="submit" class="btn">Register</button>
+    </form>
+  </div>
+
+  <hr>
+
+  <div class="container">
+    <h2 class="heading">Login</h2>
+    <form action="/login" method="post">
+      <div>
+        <label for="usernamelog">Username:</label>
+        <input name="username" type="text" id="usernamelog" placeholder="Username">
+      </div>
+      <div>
+        <label for="passwordlog">Password:</label>
+        <input name="password" type="password" id="passwordlog" placeholder="Password">
+      </div>
+      <button type="submit" class="btn">Login</button>
+    </form>
+  </div>
+</body>
 </html>

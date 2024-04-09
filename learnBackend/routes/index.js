@@ -17,21 +17,18 @@ router.get('/profile', isLoggedIn, function(req, res) {
   res.render('profile');
 });
 
-
 // register route
 router.post('/register', function(req, res, next) {
   var userData = new userModel({
     username: req.body.username,
     secret: req.body.secret,
   });
-
   userModel.register(userData, req.body.password)
     .then(function(registeredUser){
       passport.authenticate('local') (req, res, function(){
         res.redirect('/profile');
       })
     })
-
 });
 
 // login route

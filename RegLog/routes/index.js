@@ -1,27 +1,31 @@
 var express = require('express');
 const passport = require('passport');
 var router = express.Router();
+
 const userModel = require('./users');
 
 const localStrategy = require('passport-local');
 passport.use(new localStrategy(userModel.authenticate()));
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/', function(req, res) {
+  res.render('index');
 });
 
+router.get("/profile", isLoggedIn, function (req, res) {
+  res.render("profile");
+});
 
-router.post('/register', function(req, res){
+router.post("/register", function (req, res, next) {
   var userData = new userModel({
     username: req.body.username,
-    name: req.body.password,
+    secret: req.body.secret,
   });
   userModel.register(userData, req.body.password)
-    .then(function(registeredUser){
-      passport.authenticate("local"), (req, res, function () {
-          res.redirect("/profile");
-        });
+    .then(function (registeredUser) {
+      passport.authenticate("local")(req, res, function () {
+        res.redirect("/profile");
+      });
     });
 });
 
@@ -34,7 +38,7 @@ router.post('/login', passport.authenticate('local', {
 
 router.get('/logout', function(req, res, next){
   req.logout(function(err){
-    if(err) return next(err);
+    if(err) { return next(err); }
     res.redirect('/');
   });
 });
