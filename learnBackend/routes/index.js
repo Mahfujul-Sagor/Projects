@@ -1,23 +1,75 @@
 var express = require('express');
 var router = express.Router();
+const passport = require('passport');
 
 const userModel = require('./users');
+
+const localStrategy = require('passport-local');
+passport.use(new localStrategy(userModel.authenticate()));
 
 /* GET home page. */
 router.get('/', function(req, res) {
   res.render('index');
 });
 
-
-router.get('/create', async function(req, res) {
-  let userData = await userModel.create({
-    username: 'sagorika',
-    nickname: 'async3',
-    description: 'someone dont know if exists or not just for practice',
-    catagories: ['fashion', 'life'],
-  });
-  res.send(userData);
+// profile route\
+router.get('/profile', isLoggedIn, function(req, res) {
+  res.render('profile');
 });
+
+
+// register route
+router.post('/register', function(req, res, next) {
+  var userData = new userModel({
+    username: req.body.username,
+    secret: req.body.secret,
+  });
+
+  userModel.register(userData, req.body.password)
+    .then(function(registeredUser){
+      passport.authenticate('local') (req, res, function(){
+        res.redirect('/profile');
+      })
+    })
+
+});
+
+// login route
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/profile',
+  failureRedirect: '/',
+}), function(req, res){});
+
+
+// logout route
+router.get('/logout', function(req, res, next) {
+  req.logout(function(err) {
+    if(err) { return next(err); }
+    res.redirect('/');
+  });
+});
+
+
+// safeguard function
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/');
+};
+
+
+
+
+// router.get('/create', async function(req, res) {
+//   let userData = await userModel.create({
+//     username: 'sagorika',
+//     nickname: 'async3',
+//     description: 'someone dont know if exists or not just for practice',
+//     catagories: ['fashion', 'life'],
+//   });
+//   res.send(userData);
+// });
 
 
 

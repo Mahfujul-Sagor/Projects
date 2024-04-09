@@ -1,20 +1,22 @@
 const mongoose = require('mongoose');
 
+const plm = require('passport-local-mongoose');
+
 
 mongoose.connect('mongodb://127.0.0.1:27017/something');
 
+
+
 const userSchema = mongoose.Schema({
   username: String,
-  nickname: String,
-  description: String,
-  catagories: {
-    type: Array,
-    default: [],
-  },
-  dateCreated: {
-    type: Date,
-    default: Date.now(),
-  },
+  password: String,
+  secret: String,
 });
+
+
+
+userSchema.plugin(plm);
+
+
 
 module.exports = mongoose.model('user', userSchema);
