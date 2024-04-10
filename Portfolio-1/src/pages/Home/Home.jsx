@@ -71,12 +71,12 @@ function Home() {
           className="z-10 flex flex-col justify-center items-start gap-4"
           variants={professionVariant}
         >
-          <div>
+          <div className="cursor-default">
             {sentence.map((letter, index) => {
               return <TextSpan key={index}>{letter === ' ' ? '\u00A0' : letter}</TextSpan>;
             })}
           </div>
-          <h2 className="text-2xl font-[Playfair]">
+          <h2 className="text-2xl font-[Playfair] cursor-default">
             Mymensingh,&nbsp;Bangladesh
           </h2>
           <Button text="Hire me" to="/contact" />
