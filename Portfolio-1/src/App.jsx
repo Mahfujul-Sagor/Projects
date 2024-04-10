@@ -1,6 +1,7 @@
 import Navbar from "./components/Navbar.jsx";
 // import { Outlet, useLocation } from "react-router-dom";
 import { Routes, Route, useLocation } from "react-router-dom";
+
 import { AnimatePresence } from "framer-motion";
 
 import Home from "./pages/Home/Home.jsx";
